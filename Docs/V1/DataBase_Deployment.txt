@@ -1,0 +1,44 @@
+# Database Deployment Steps – GATE ACCESS CONTROL CHECK
+
+## Objective
+
+Deploy and initialize the Gate Access Control database required for application operation.
+
+
+## 1. Pre-Requisites
+
+* SQL Server installed and running.
+* ODBC Driver 17 installed on the application server.
+* Database credentials configured in `.env`:
+
+  * `DB_DATA_SOURCE`
+  * `DB_INITIAL_CATALOG`
+  * `DB_USER_ID`
+  * `DB_PASSWORD`
+* Network connectivity verified (Port 1433 open).
+
+## 2. Database Deployment
+
+* Ensure the database server is accessible.
+* Run the database initialization script once the environment is ready:
+
+```
+python3 -m create_database
+```
+
+* This will create the required database and tables automatically and populate initial data.
+
+
+## 3. Verification
+
+* Confirm the database and tables are created.
+* Check that initial data has been populated.
+* Validate connectivity from the application server.
+* Review logs to ensure no errors occurred.
+
+## 4. Production Considerations
+
+* Ensure database backups are available.
+* Limit access to authorized IPs.
+* Rotate credentials according to IT security policy.
+
