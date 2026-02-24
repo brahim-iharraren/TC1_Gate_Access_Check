@@ -48,5 +48,3 @@ GATE ACCESS CONTROL CHECK Pre-Production Configuration Steps
 
    * Confirm logging is operational in `App_LOG/`.
    * Verify that logs are readable via `/Gate/logs` and `/Gate/readLogs`.
-
-**Reference MoP Document:** <<Pre-Production MoP Link>>
