@@ -1,0 +1,125 @@
+Here’s a structured way to fill your document with clear placeholders and example instructions. Since the MoP links are not provided, I’ll leave them as placeholders you can replace with the actual links:
+
+---
+
+## 2.3 GATE ACCESS CONTROL CHECK Configuration Steps
+
+The detailed step-by-step configuration process for **Gate Access Control Check** is documented below. These steps cover both **pre-production** and **production** environments. For a comprehensive guide on application deployment, refer to the linked MoP (Method of Procedure) documents.
+
+---
+
+### 2.3.1 GATE ACCESS CONTROL CHECK Pre-Production Configuration Steps
+
+**Objective:** Prepare and configure the Gate Access Control system in a controlled pre-production environment for testing and validation before moving to production.
+
+**Step-by-Step Process:**
+
+1. **Environment Setup**
+
+   * Ensure the pre-production server meets the required specifications: OS, RAM, CPU, and network connectivity.
+   * Verify access to the database server (credentials stored in `.env`).
+
+2. **Application Configuration**
+
+   * Clone the Gate Access Control repository or copy the deployment package.
+   * Ensure `.env` file contains pre-production credentials:
+
+     * `DB_DATA_SOURCE`
+     * `DB_USER_ID` / `DB_PASSWORD`
+     * `ADDR` / `PORT`
+     * `SECRET_KEY`
+   * Verify network interface configuration (`INTERFACE` and `TARGET_SUBNET` values).
+
+3. **Database Setup**
+
+   * Create or validate the pre-production database and tables (`gate_access_db`).
+   * Run SQL scripts to initialize tables if not present.
+   * Confirm connectivity from the application server to the database.
+
+4. **Dependencies Installation**
+
+   * Ensure Python 3.10+ is installed.
+   * Install required packages from `requirements.txt` including:
+
+     * `starlette`, `hypercorn`, `python-dotenv`, `pyodbc`, `fastapi-login`.
+
+5. **Service Start and Testing**
+
+   * Start the server with Hypercorn using the pre-production configuration:
+
+     ```bash
+     hypercorn app_module:app --bind 127.0.0.1:2250
+     ```
+   * Verify that endpoints `/Gate/home`, `/Gate/logs`, `/Gate/login` are reachable.
+   * Perform test logins with pre-production credentials.
+   * Validate database operations (add-person, check-eligibility).
+
+6. **Monitoring and Logging**
+
+   * Confirm logging is operational in `App_LOG/`.
+   * Verify that logs are readable via `/Gate/logs` and `/Gate/readLogs`.
+
+**Reference MoP Document:** <<Pre-Production MoP Link>>
+
+---
+
+### 2.3.2 GATE ACCESS CONTROL CHECK Production Configuration Steps
+
+**Objective:** Deploy and configure the Gate Access Control system in the production environment with live credentials and full network access.
+
+**Step-by-Step Process:**
+
+1. **Environment Preparation**
+
+   * Ensure production server meets hardware and OS requirements.
+   * Verify firewall rules allow access to required ports (`PORT`) and network interfaces.
+
+2. **Application Deployment**
+
+   * Copy the validated pre-production package to the production server.
+   * Replace `.env` file with production credentials:
+
+     * `DB_DATA_SOURCE`, `DB_USER_ID`, `DB_PASSWORD`
+     * `ADDR`, `PORT`, `SECRET_KEY`
+   * Ensure proper permissions for the application user.
+
+3. **Database Configuration**
+
+   * Validate the production database schema (`gate_access_db`).
+   * Confirm production database connectivity.
+   * Apply any migration scripts required for production.
+
+4. **Dependencies Verification**
+
+   * Install required Python packages as per `requirements.txt`.
+   * Confirm Python version and system libraries are compatible with the application.
+
+5. **Starting the Application**
+
+   * Start the application with Hypercorn:
+
+     ```bash
+     hypercorn app_module:app --bind 0.0.0.0:<PRODUCTION_PORT>
+     ```
+   * Enable any reverse proxy if required (Nginx, Apache).
+   * Verify HTTPS and SSL certificates if applicable.
+
+6. **Validation and Testing**
+
+   * Test login and CRUD operations on production database.
+   * Verify logging in `App_LOG/`.
+   * Confirm access from all authorized client machines.
+
+7. **Monitoring and Maintenance**
+
+   * Schedule automated log rotation.
+   * Enable monitoring for uptime and performance.
+   * Document any environment-specific configurations for troubleshooting.
+
+**Reference MoP Document:** <<Production MoP Link>>
+
+---
+
+If you want, I can also **create a ready-to-use table version of this document** with columns for **Step**, **Action**, and **Verification**, which is often preferred for official MoP documentation.
+
+Do you want me to do that?
