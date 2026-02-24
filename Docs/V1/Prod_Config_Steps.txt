@@ -1,40 +1,29 @@
-GATE ACCESS CONTROL CHECK Production Configuration Steps
-
 **Objective:** Prepare and configure the Gate Access Control system in a controlled production environment.
 
 **Step-by-Step Process:**
 
 1. **Environment Setup**
-
-1. **Environment Preparation**
-
    * Ensure production server meets hardware and OS requirements.
    * Verify firewall rules allow access to required ports (`PORT`) and network interfaces.
 
 2. **Application Deployment**
-
    * Copy the validated pre-production package to the production server.
    * Replace `.env` file with production credentials:
-
      * `DB_DATA_SOURCE`, `DB_USER_ID`, `DB_PASSWORD`
      * `ADDR`, `PORT`, `SECRET_KEY`
    * Ensure proper permissions for the application user.
 
 3. **Database Configuration**
-
    * Validate the production database schema (`gate_access_db`).
    * Confirm production database connectivity.
    * Apply any migration scripts required for production.
 
 4. **Dependencies Verification**
-
    * Install required Python packages as per `requirements.txt`.
    * Confirm Python version and system libraries are compatible with the application.
 
 5. **Starting the Application**
-
    * Start the application with Hypercorn:
-
      ```bash
      hypercorn app_module:app --bind 0.0.0.0:<PRODUCTION_PORT>
      ```
@@ -42,14 +31,9 @@ GATE ACCESS CONTROL CHECK Production Configuration Steps
    * Verify HTTPS and SSL certificates if applicable.
 
 6. **Validation and Testing**
-
    * Test login and CRUD operations on production database.
    * Verify logging in `App_LOG/`.
    * Confirm access from all authorized client machines.
 
 7. **Monitoring and Maintenance**
-
    * Schedule automated log rotation.
-   * Enable monitoring for uptime and performance.
-   * Document any environment-specific configurations for troubleshooting.
-
