@@ -1,13 +1,4 @@
-Here’s a structured way to fill your document with clear placeholders and example instructions. Since the MoP links are not provided, I’ll leave them as placeholders you can replace with the actual links:
-
----
-
-## 2.3 GATE ACCESS CONTROL CHECK Configuration Steps
-
-The detailed step-by-step configuration process for **Gate Access Control Check** is documented below. These steps cover both **pre-production** and **production** environments. For a comprehensive guide on application deployment, refer to the linked MoP (Method of Procedure) documents.
-
-
-### 2.3.1 GATE ACCESS CONTROL CHECK Pre-Production Configuration Steps
+GATE ACCESS CONTROL CHECK Pre-Production Configuration Steps
 
 **Objective:** Prepare and configure the Gate Access Control system in a controlled pre-production environment for testing and validation before moving to production.
 
