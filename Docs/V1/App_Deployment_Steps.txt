@@ -1,0 +1,85 @@
+# Application Deployment Steps – Gate Access Control
+
+## 1. Pre-Requisites
+
+Before deploying the application, ensure:
+
+* Python 3.10+ is installed.
+* Required packages installed (from `requirements.txt`):
+
+  * `starlette`, `hypercorn`, `python-dotenv`, `pyodbc`, `fastapi-login`
+* `.env` file is configured with production or pre-production credentials:
+
+  * `DB_DATA_SOURCE`
+  * `DB_INITIAL_CATALOG`
+  * `DB_USER_ID` / `DB_PASSWORD`
+  * `ADDR` / `PORT`
+  * `SECRET_KEY`
+* Network connectivity verified (ports open, firewall rules applied).
+
+---
+
+## 2. Deployment Steps
+
+1. **Copy Application**
+
+   * Copy the application files to the target server.
+   * Maintain folder structure:
+
+     ```
+     /app
+       ├─ static/
+       ├─ templates/
+       ├─ gateDataBase.py
+       ├─ create_database.py
+       ├─ main_app.py
+       └─ .env
+     ```
+
+2. **Database Setup**
+
+   * Ensure the database server is accessible.
+   * Run the database initialization script once the environment is ready:
+
+     ```bash
+     python3 -m create_database
+     ```
+
+3. **Install Dependencies**
+
+   * From the application root:
+
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+4. **Start the Application**
+
+   * Run the application using Hypercorn:
+
+     ```bash
+     hypercorn main_app:app --bind 0.0.0.0:<PORT>
+     ```
+   * Replace `<PORT>` with the one defined in your `.env`.
+   * Optional: configure reverse proxy (Nginx / Apache) if needed.
+
+---
+
+## 3. Verification
+
+* Access the main endpoints:
+  * `/Gate/login`
+  * `/Gate/home`
+
+* Perform test login using configured credentials.
+* Validate database operations (add-person, check-eligibility).
+* Check logs in `App_LOG/` to confirm no errors.
+
+---
+
+## 4. Post-Deployment Notes
+
+* Schedule log rotation for `App_LOG/`.
+* Enable monitoring for uptime and performance.
+* Keep `.env` credentials secure and do not commit to version control.
+
